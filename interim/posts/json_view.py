@@ -2,6 +2,7 @@ from datetime import date
 from re import search
 
 from django import forms
+from django.contrib import admin
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.utils.safestring import mark_safe
@@ -85,3 +86,36 @@ class JsonForm(forms.ModelForm):
         if commit:
             instance.save()  # save :)
         return instance
+
+
+class JsonView(admin.ModelAdmin):
+    def get_form(self, request, obj=None, change=False, **kwargs):
+        return JsonView
+
+    def get_fieldsets(self, request, obj=None):
+        # получаем список полей для отображения, без этого хоть убей не видит наши кастомные поля, хотя они создаются
+        fieldsets = super(JsonView, self).get_fieldsets(request, obj)
+        for i in JSON_DATA_SCHEMA.keys():
+            fieldsets[0][1]['fields'] += [i]
+        return fieldsets
+
+    @staticmethod
+    def pars_json(obj, local_json_field=''):  # метод, которым мы парсим json, для отображения в админке
+        if obj.json_field:  # если объект в принципе есть (не новая запись)
+            json_obj = obj.json_field
+            if local_json_field in json_obj.keys():  # смотрим, есть ли текущий ключ в файле
+                if search(r'image*', local_json_field):  # способ отдельного вывода для изображений
+                    return mark_safe(f'<img src="{json_obj[local_json_field]}" width="100">')
+                elif search(r'text*', local_json_field):  # а эт для текста вывод
+                    return json_obj[local_json_field]
+        else:
+            return mark_safe('<p>Объект пуст</p>')  # ну и вывод для пустого объекта
+
+    def get_json_image(self, obj):
+        return self.pars_json(obj, local_json_field='image')
+
+    def get_json_title(self, obj):
+        return self.pars_json(obj, local_json_field='text')
+
+    get_json_image.short_description = 'Миниатюра'
+    get_json_title.short_description = 'Текст'
