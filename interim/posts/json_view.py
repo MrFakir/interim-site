@@ -67,7 +67,6 @@ class JsonForm(forms.ModelForm):
 
         def save_image(image):
             # функция сохранения изображения
-            # image = self.cleaned_data.get(image, None)
             date_path = date.today().strftime('%Y/%m/%d')
             return default_storage.save(f'front_page_img/{date_path}/{str(image)}', ContentFile(image.read()))
 
@@ -90,7 +89,7 @@ class JsonForm(forms.ModelForm):
 
 class JsonView(admin.ModelAdmin):
     def get_form(self, request, obj=None, change=False, **kwargs):
-        return JsonView
+        return JsonForm
 
     def get_fieldsets(self, request, obj=None):
         # получаем список полей для отображения, без этого хоть убей не видит наши кастомные поля, хотя они создаются

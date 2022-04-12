@@ -1,4 +1,4 @@
-import re
+from re import search
 
 from django.contrib import admin
 from django import forms
@@ -31,13 +31,19 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class MainPageModelAdminForm(JsonForm):
+    # model = MainPageModel
 
     class Meta:
         model = MainPageModel
         exclude = ['json_field', ]
+        # fields = '__all__'
 
 
 class MainPageModelAdmin(JsonView):
+
+    # form = MainPageModelAdminForm
+    def get_form(self, request, obj=None, change=False, **kwargs):
+        return MainPageModelAdminForm
 
     save_on_top = True
     list_display = ['title', 'get_json_title', 'get_json_image']
