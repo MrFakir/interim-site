@@ -1,10 +1,6 @@
-from re import search
-
 from django.contrib import admin
 from django import forms
-from django.utils.safestring import mark_safe
 
-from interim.settings import JSON_DATA_SCHEMA
 from .models import *
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from .json_view import JsonForm, JsonView
@@ -31,17 +27,13 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class MainPageModelAdminForm(JsonForm):
-    # model = MainPageModel
 
     class Meta:
         model = MainPageModel
         exclude = ['json_field', ]
 
 
-
 class MainPageModelAdmin(JsonView):
-
-    # form = MainPageModelAdminForm
     def get_form(self, request, obj=None, change=False, **kwargs):
         return MainPageModelAdminForm
 
