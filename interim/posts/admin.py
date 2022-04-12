@@ -36,7 +36,7 @@ class MainPageModelAdminForm(JsonForm):
     class Meta:
         model = MainPageModel
         exclude = ['json_field', ]
-        # fields = '__all__'
+
 
 
 class MainPageModelAdmin(JsonView):
