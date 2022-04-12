@@ -9,6 +9,7 @@ register = template.Library()
 @register.inclusion_tag('posts/main_page_articles_tpl.html')
 def show_main_page_articles():
     data_cat = Post.objects.filter(Q(category__title__icontains='ООО') | Q(category__title__icontains='ИП'))
+    # print(data_cat)
     first_category = data_cat.filter(category__title__icontains='ООО')[:3]
     second_category = data_cat.filter(category__title__icontains='ИП')[:3]
     try:
