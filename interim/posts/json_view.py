@@ -10,7 +10,7 @@ from interim.settings import JSON_DATA_SCHEMA, MEDIA_URL
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 
-class JsonViews(forms.ModelForm):
+class JsonForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)  # наследуем все что было в init
         if not self.instance.json_field:  # если наш json файл(поле) в словаре пустой
@@ -61,12 +61,12 @@ class JsonViews(forms.ModelForm):
                         self.fields[i] = forms.CharField(max_length=255, required=False, help_text='Поле для ссылки')
 
     def save(self, commit=True):
-        instance = super(JsonViews, self).save(commit=False)
+        instance = super(JsonForm, self).save(commit=False)
         json_dir = {}
 
         def save_image(image):
             # функция сохранения изображения
-            image = self.cleaned_data.get(i, None)
+            # image = self.cleaned_data.get(image, None)
             date_path = date.today().strftime('%Y/%m/%d')
             return default_storage.save(f'front_page_img/{date_path}/{str(image)}', ContentFile(image.read()))
 
