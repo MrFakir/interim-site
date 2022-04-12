@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load mine_page_articles %}
+{% load static %}
+{% block content %}
+    <header class="hero">
+        <div class="carousel js-flickity">
+            {% for block in block_for_slider %}
+                <div class="carousel-cell" style="background-image: url({{ block.image }});">
+                    <div class="hero-bg">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <h1 class="wp1">{{ block.text }}</h1>
+                                    <a href="{{ item.url }}" class="btn primary wp2">Кнопка</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2 hero-intro-text wp3">
+                                    <p>{{ block.text1 }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class='mouse-container'>
+            <a href="#intro">
+                <div class='mouse'>
+                    <span class='scroll-down'></span>
+                </div>
+            </a>
+        </div>
+    </header>
+    <!-- SECTION: Intro -->
+    <section class="collective has-padding" id="intro">
+        <div class="container">
+            {% for i in block_for_main_post %}
+                <div class="row">
+                    <div class="col-md-3">
+                        <h4>{{ i.text }}</h4>
+                    </div>
+                    <div class="col-md-9">
+                        {{ i.content|safe }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <!-- END SECTION: Intro -->
+    <!-- SECTION: Crew -->
+    <section class="crew has-padding alternate-bg" id="team">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% for i in block_for_special_item1 %}
+                        <h4>{{ i.text }}</h4>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    {% for i in block_for_special_item2 %}
+                        <article class="crew-member"
+                                 style="background-image: url({{ i.image }})">
+                            <figure>
+                                <figcaption class="overlay">
+                                    <h2>{{ i.text }}</h2>
+                                    {{ i.content|safe }}
+                                    <div class="crew-socials">
+                                        <ul>
+                                            <li><a href="{{ i.url }}"><i class="fa fa-twitter"></i></a>
+                                            </li>
+                                            <li><a href="{{ i.url1 }}"><i class="fa fa-linkedin"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    {% endfor %}
+                </div>
+                <div class="skillset">
+                    <div class="col-md-9">
+                        {% for i in block_for_special_item3 %}
+                            <div class="bar-chart-wrapper">
+                                <h5 class="bar-chart-text">{{ i.text }}<span class="push-right">{{ i.text1 }}</span>
+                                </h5>
+                                <div class="bar-wrapper">
+                                    <div class="bar" data-percentage="{{ i.text1 }}">
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END SECTION: Crew -->
+    <!-- SECTION: Stats -->
+    <div class="stats has-padding-tall">
+        <div class="container">
+            <div class="row">
+                {% for i in block_for_special_item %}
+                    <div class="col-md-4 col-sm-4 stats-container">
+                        <div class="stats-wrapper">
+                            <p class="stats-number" data-stop="{{ i.text }}"
+                               style="text-align: center;">{{ i.text }}</p>
+                            <p class="stats-text">{{ i.text1 }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+    <!-- END SECTION: Stats -->
+    <!-- SECTION: Articles -->
+    <section class="latest-articles has-padding alternate-bg" id="articles">
+        {% show_main_page_articles %}
+    </section>
+    <!-- END SECTION: Articles -->
+    <!-- SECTION: Freebies -->
+    <section class="freebies has-padding" id="freebies">
+        <div class="container freebies-intro">
+            {% for i in block_for_other_post1 %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>{{ i.text }}</h4>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6 content-left">
+                        {{ i.content|safe }}
+                    </div>
+                    <div class="col-md-6 content-right">
+                        {{ i.content1|safe }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                {% for i in block_for_tiled %}
+                    <div class="col-md-6 no-padding">
+                        <article class="item wp5">
+                            <figure class="has-overlay">
+                                <figcaption class="overlay">
+                                    <div class="freebie-content">
+                                        <span class="date">{{ i.text1 }}</span>
+                                        <h2>{{ i.text }}</h2>
+                                        <div class="group">
+                                            <a href="{{ i.url }}"
+                                               class="btn secondary">Dowloads</a>
+                                        </div>
+                                    </div>
+                                </figcaption>
+                                <img src="{{ i.image }}" alt="Sedna Freebie">
+                            </figure>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                {% for i in block_for_tiled1 %}
+                    <div class="col-md-6 no-padding">
+                        <article class="item wp5">
+                            <figure class="has-overlay">
+                                <figcaption class="overlay">
+                                    <div class="freebie-content">
+                                        <span class="date">{{ i.text1 }}</span>
+                                        <h2>{{ i.text }}</h2>
+                                        <div class="group">
+                                            <a href="{{ i.url }}"
+                                               class="btn secondary">Download</a>
+                                        </div>
+                                    </div>
+                                </figcaption>
+                                <img src="{{ i.image }}" alt="Sedna Freebie">
+                            </figure>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- END SECTION: Freebies -->
+{% endblock %}

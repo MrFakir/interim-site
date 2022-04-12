@@ -1,0 +1,31 @@
+{% load main_menu %}
+{% load static %}
+	<!-- SECTION: Footer -->
+	<footer class="has-padding footer-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 footer-branding">
+					<img class="footer-branding-logo" src="{% static 'img/logo.png' %}" alt="Synthetica freebie html5 css3 template logo">
+					<p style="margin-left: 10px;">Туда сюда все права защищены</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 footer-nav">
+                    {% show_main_menu 'footer-' %}
+					<ul class="footer-share">
+						<li><a href="#" class="share-trigger"><i class="fa fa-share"></i>Share</a></li>
+					</ul>
+					<div class="share-dropdown">
+						<ul>
+							<li><a href="#" class="share-twitter"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#" class="share-facebook"><i class="fa fa-facebook"></i></a></li>
+						</ul>
+					</div>
+					<ul class="footer-secondary-nav">
+						<li><p><a href="#"><em>by Dr.</em></a></p></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- END SECTION: Footer -->
