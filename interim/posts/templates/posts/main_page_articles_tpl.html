@@ -18,7 +18,11 @@
                 <article class="article-post">
                     <a href="#">
                         <div class="article-image has-overlay"
-                             style="background-image: url({% static 'img/article-01.jpg' %})">
+                                {% if item.image %}
+                             style="background-image: url({{ item.image }})">
+                                {% else %}
+                                    style="background-image: url({% static 'img/article-01.jpg' %})">
+                                {% endif %}
                         </div>
                         <figure>
                             <figcaption>
@@ -41,7 +45,11 @@
                 <article class="article-post">
                     <a href="#">
                         <div class="article-image has-overlay"
-                             style="background-image: url({% static 'img/article-01.jpg' %})">
+                                {% if item.image %}
+                             style="background-image: url({{ item.image }})">
+                                {% else %}
+                                    style="background-image: url({% static 'img/article-01.jpg' %})">
+                                {% endif %}
                         </div>
                         <figure>
                             <figcaption>

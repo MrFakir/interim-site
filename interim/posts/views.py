@@ -30,10 +30,11 @@ class Home(ListView):
         def show_home_page_post(json_obj):
             try:
                 main_post = json_obj['block_for_main_post'][-1:][0]
+
                 content = main_post['content']
                 content = content.split('</p>', maxsplit=1)
                 content.insert(1, f'</p><div class="img-cont"><img src="{main_post["image"]}"'
-                                  f'alt="{main_post["text"]}"></div>')
+                                  f'style="width: 100%;" alt="{main_post["text"]}"></div>')
                 content = "".join(content)
                 main_post['content'] = content
                 block_for_main_post = list()
@@ -44,6 +45,7 @@ class Home(ListView):
 
         context = date_for_main_page(context['object_list'].order_by('pk'))
         context.update(show_home_page_post(context))
+        # print(context)
         return context
 
 

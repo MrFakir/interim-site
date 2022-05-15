@@ -16,6 +16,7 @@ class PostAdminForm(forms.ModelForm):
 
 class PostAdmin(admin.ModelAdmin):
     form = PostAdminForm
+    save_as = True
     save_on_top = True
     prepopulated_fields = {"slug": ("title",)}
     list_filter = ('category',)
@@ -38,6 +39,7 @@ class MainPageModelAdmin(JsonView):
         return MainPageModelAdminForm
 
     save_on_top = True
+    save_as = True
     list_display = ['title', 'get_json_title', 'get_json_image']
 
 

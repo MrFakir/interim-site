@@ -25,8 +25,8 @@
                                 {% endif %}
                                 <figure>
                                     <figcaption>
-                                        <h2>{{ i.title }}</h2>
-                                        {{ i.content|safe|truncatewords:5 }}
+                                        <h2>{{ i.title|truncatewords:3 }}</h2>
+                                        {{ i.content|safe|truncatewords:3 }}
                                     </figcaption>
                                 </figure>
                             </a>

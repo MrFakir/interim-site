@@ -10,7 +10,6 @@ class Category(models.Model):
     slug = models.SlugField(max_length=10, verbose_name='url(ссылка)', unique=True)
     order = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)],
                                              verbose_name='Порядок вывода')
-    subcategory = models.BooleanField(default=False, verbose_name='Подкатегория (для меню)')
 
     def __str__(self):
         return self.title
@@ -32,7 +31,6 @@ class Post(models.Model):
     post_img = models.ImageField(upload_to='post_img/%Y/%m/%d/', blank=True, verbose_name='Изображение')
     views = models.IntegerField(default=0, verbose_name='Количество просмотров')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='posts')
-    on_home_page = models.BooleanField(default=False, verbose_name='На главной')
 
     def __str__(self):
         return self.title

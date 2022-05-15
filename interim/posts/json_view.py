@@ -47,12 +47,12 @@ class JsonForm(forms.ModelForm):
                 elif search(r'content*', i):  # выбираем поле text
                     if i in json_for_filling.keys():  # проверяем есть ли текущий ключ константы, в json из базы
                         self.fields[i] = forms.CharField(required=False,
-                                                         help_text='Поле большого для текста',
+                                                         help_text='Поле для большого текста',
                                                          initial=json_for_filling[i],  # заполняем поле старым значением
                                                          widget=CKEditorUploadingWidget())
                     else:
                         self.fields[i] = forms.CharField(required=False,
-                                                         help_text='Поле большого для текста',
+                                                         help_text='Поле для большого текста',
                                                          widget=CKEditorUploadingWidget())
                 elif search(r'url*', i):  # выбираем поле url
                     if i in json_for_filling.keys():  # проверяем есть ли текущий ключ константы, в json из базы
