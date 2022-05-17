@@ -26,7 +26,7 @@
                 <div class="col-md-8">
                     {% if post.post_img %}
                         <div class="img-cont">
-                            <img src="{{ post.post_img.url }}" alt="{{ post.title }}">
+                            <img src="{{ post.post_img.url }}" alt="{{ post.title }}" style="width: 100%;">
                         </div>
                     {% else %}
                     {% endif %}
@@ -56,7 +56,7 @@
                                 <figure>
                                     <figcaption>
                                         <h2>{{ i.title }}</h2>
-                                        {{ i.content|safe|truncatewords_html:15 }}
+                                        {{ i.content|safe|truncatewords_html:5 }}
                                     </figcaption>
                                 </figure>
                             </a>

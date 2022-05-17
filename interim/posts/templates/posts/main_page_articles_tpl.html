@@ -16,10 +16,10 @@
         {% for item in first_category %}
             <div class="col-md-4">
                 <article class="article-post">
-                    <a href="#">
+                    <a href="{{ item.get_absolute_url }}">
                         <div class="article-image has-overlay"
-                                {% if item.image %}
-                             style="background-image: url({{ item.image }})">
+                                {% if item.post_img %}
+                             style="background-image: url({{ item.post_img.url }})">
                                 {% else %}
                                     style="background-image: url({% static 'img/article-01.jpg' %})">
                                 {% endif %}
@@ -43,10 +43,10 @@
         {% for item in second_category %}
             <div class="col-md-4">
                 <article class="article-post">
-                    <a href="#">
+                    <a href="{{ item.get_absolute_url }}">
                         <div class="article-image has-overlay"
-                                {% if item.image %}
-                             style="background-image: url({{ item.image }})">
+                                {% if item.post_img %}
+                             style="background-image: url({{ item.post_img.url }})">
                                 {% else %}
                                     style="background-image: url({% static 'img/article-01.jpg' %})">
                                 {% endif %}

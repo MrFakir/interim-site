@@ -242,6 +242,7 @@ JSON_DATA_SCHEMA = {
     'text4': 'string',
     'text5': 'string',
     'content': 'string',
+    'content1': 'string',
     'url': 'string',
     'url1': 'string',
     'url2': 'string',
