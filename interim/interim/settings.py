@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'posts.apps.PostsConfig',
+    'send_contact.apps.SendContactConfig',
 ]
 
 MIDDLEWARE = [
