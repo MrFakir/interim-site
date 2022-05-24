@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
-from interim.key import SECRET_KEY
+from interim.key import SECRET_KEY, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -98,7 +98,6 @@ DATABASES = {
     },
 }
 
-
 # DATABASES = {
 # 'default': {
 # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -109,7 +108,6 @@ DATABASES = {
 # 'PORT': '5432'
 # }
 # }
-
 
 
 # Password validation
@@ -163,6 +161,15 @@ CACHES = {
         'LOCATION': os.path.join(BASE_DIR, 'django_cache'),
     }
 }
+# email config
+
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+DEFAULT_FROM_EMAIL = 'fakir_x@mail.ru'
+EMAIL_HOST_USER = EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+EMAIL_USE_SSL = True
+
 
 # for debug toolbars
 INTERNAL_IPS = [
