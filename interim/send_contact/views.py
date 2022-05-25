@@ -1,23 +1,22 @@
-import datetime
-
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
-from django.shortcuts import render
 
-from django.views.generic import ListView, DetailView
 from django.views.generic import CreateView
 
 from posts.models import Post
 from .models import *
 from django.urls import reverse_lazy
-from django.http import HttpResponse
+
 from django.core.mail import send_mail
 from .forms import ContactForm
 
 
-class SendContacts(CreateView):
+class SendContacts(SuccessMessageMixin, CreateView):
     model = Clients
-    success_url = reverse_lazy('send-ok')
+    success_url = reverse_lazy('send-contacts')
     form_class = ContactForm
+    template_name = 'send_contact/clients_form.html'
+    success_message = 'Спасибо, мы с Вами свяжемся в ближайшее или указанное Вами время.'
 
     def form_valid(self, form):
         data = form.data
@@ -29,12 +28,6 @@ class SendContacts(CreateView):
             recipient_list=['fakir_x@mail.ru', ]
         )
         return super().form_valid(form)
-
-
-class SendOk(DetailView):
-    model = OkPage
-    template_name = 'send_contact/thanks_page.html'
-    context_object_name = 'ok_page'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
