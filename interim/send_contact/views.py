@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 
@@ -17,6 +18,7 @@ class SendContacts(SuccessMessageMixin, CreateView):
     form_class = ContactForm
     template_name = 'send_contact/clients_form.html'
     success_message = 'Спасибо, мы с Вами свяжемся в ближайшее или указанное Вами время.'
+    error_message = 'Ошибка, проверьте правильность заполненных полей.'
 
     def form_valid(self, form):
         data = form.data
@@ -28,6 +30,10 @@ class SendContacts(SuccessMessageMixin, CreateView):
             recipient_list=['fakir_x@mail.ru', ]
         )
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, self.error_message)
+        return super().form_invalid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

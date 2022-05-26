@@ -19,13 +19,19 @@
                 <br>
                 <div class="col-md-8">
                     <form class="form-group" method="POST">
-
-                        {% for msg in messages %}
-                            <div class="alert alert-success" role="alert">
-                                {{ msg }}
-                            </div>
-                        {% endfor %}
-
+                        {% if messages %}
+                            {% for msg in messages %}
+                                {% if msg.tags == 'error' %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ msg }}
+                                    </div>
+                                {% else %}
+                                    <div class="alert alert-{{ msg.tags }}" role="alert">
+                                        {{ msg }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                         {% csrf_token %}
                         <div class="form-group">
                             <div class="form-group">
@@ -48,10 +54,11 @@
                                 <label class="contact-form">{{ form.message.label }}</label>
                                 {{ form.message }}
                             </div>
+                            <div class="form-group">
+                                <label class="contact-form">{{ form.captcha.label }}</label>
+                                {{ form.captcha }}
+                            </div>
                         </div>
-
-                        {#                            {{ form.as_p }}#}
-
 
                         <input type="submit" value="Отправить" class="btn btn-primary btn-lg">
                     </form>

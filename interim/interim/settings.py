@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'posts.apps.PostsConfig',
     'send_contact.apps.SendContactConfig',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -170,6 +171,10 @@ EMAIL_HOST_USER = EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
 EMAIL_USE_SSL = True
 
+
+# captcha config
+CAPTCHA_FONT_SIZE = 32
+CAPTCHA_LENGTH = 6
 
 # for debug toolbars
 INTERNAL_IPS = [

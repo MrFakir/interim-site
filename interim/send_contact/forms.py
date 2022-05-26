@@ -1,11 +1,16 @@
 from django import forms
+from django.core.exceptions import NON_FIELD_ERRORS
+
 from .models import Clients
+from captcha.fields import CaptchaField
 
 
 class ContactForm(forms.ModelForm):
+    captcha = CaptchaField(help_text='Введите символы с картинки')
+
     class Meta:
         model = Clients
-        fields = ['name', 'company', 'email', 'phone', 'message']
+        fields = ['name', 'company', 'email', 'phone', 'message', 'captcha']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'company': forms.TextInput(attrs={'class': 'form-control'}),
