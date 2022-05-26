@@ -2329,10 +2329,10 @@ div.mouse span.scroll-down {
 .stats p.stats-text {
     font-size: 15px;
     font-weight: 500;
-    line-height: .7;
     padding: 0;
     text-transform: uppercase;
-    color: #fff
+    color: #fff;
+    text-align: center
 }
 
 .stats .stats-container {
@@ -2345,7 +2345,7 @@ div.mouse span.scroll-down {
 }
 
 .stats .stats-number {
-    text-align: left
+    text-align: center
 }
 
 .crew article.crew-member {
@@ -2528,7 +2528,10 @@ div.mouse span.scroll-down {
 
 .latest-articles article.article-post {
     position: relative;
-    overflow: hidden
+    overflow: hidden;
+    border-bottom: solid 1px #E5E7E9;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
 }
 
 .latest-articles article.article-post .article-image {
@@ -2539,7 +2542,9 @@ div.mouse span.scroll-down {
     background-color: #000;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover
+    background-size: cover;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .latest-articles .has-overlay:after, .latest-articles .freebies .has-overlay:after {
@@ -4019,6 +4024,9 @@ footer .footer-nav ul.footer-secondary-nav li {
     font-size: 15px;
     font-weight: 600;
     text-transform: uppercase;
+}
 
+.category-article{
+    margin-left: 20px;
 
 }

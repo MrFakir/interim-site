@@ -7,31 +7,32 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-4">
-                    <h4>{{ title }}</h4>
+                    <h1>{{ title }}</h1>
                 </div>
             </div>
             <div class="row">
                 {% for i in category %}
-                    <div class="col-md-4">
+                    <div class="col-md-12">
                         <article class="article-post">
                             <a href="{{ i.get_absolute_url }}">
                                 {% if i.post_img %}
-                                    <div class="article-image has-overlay"
+                                    <div class="article-image has-overlay col-md-4"
                                          style="background-image: url({{ i.post_img.url }})">
                                     </div>
                                 {% else %}
                                     <div class="article-image has-overlay">
                                     </div>
                                 {% endif %}
-                                <figure>
+                                <figure class="category-article">
                                     <figcaption>
-                                        <h2>{{ i.title|truncatewords:3 }}</h2>
-                                        {{ i.content|safe|truncatewords:3 }}
+                                        <h2>{{ i.title|truncatewords:20 }}</h2>
+                                        <p>{{ i.content|truncatewords_html:30|striptags }}</p>
+
+{#                                        striptags#}
                                     </figcaption>
                                 </figure>
                             </a>
-                            <ul class="article-footer">
-                            </ul>
+
                         </article>
                     </div>
                 {% endfor %}
