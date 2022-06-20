@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('captcha/', include('captcha.urls')),
+    path('', include('main_page.urls')),
     path('', include('send_contact.urls')),
     path('', include('posts.urls')),
 

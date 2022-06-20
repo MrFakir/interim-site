@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'posts.apps.PostsConfig',
     'send_contact.apps.SendContactConfig',
+    'main_page.apps.MainPageConfig',
     'captcha',
 ]
 
@@ -170,7 +171,6 @@ DEFAULT_FROM_EMAIL = 'fakir_x@mail.ru'
 EMAIL_HOST_USER = EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
 EMAIL_USE_SSL = True
-
 
 # captcha config
 CAPTCHA_FONT_SIZE = 32

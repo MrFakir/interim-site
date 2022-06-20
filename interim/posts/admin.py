@@ -3,7 +3,7 @@ from django import forms
 
 from .models import *
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
-from .json_view import JsonForm, JsonView
+
 
 
 class PostAdminForm(forms.ModelForm):
@@ -27,22 +27,9 @@ class CategoryAdmin(admin.ModelAdmin):
     save_on_top = True
 
 
-class MainPageModelAdminForm(JsonForm):
 
-    class Meta:
-        model = MainPageModel
-        exclude = ['json_field', ]
-
-
-class MainPageModelAdmin(JsonView):
-    def get_form(self, request, obj=None, change=False, **kwargs):
-        return MainPageModelAdminForm
-
-    save_on_top = True
-    save_as = True
-    list_display = ['title', 'get_json_title', 'get_json_image']
 
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(MainPageModel, MainPageModelAdmin)
+
